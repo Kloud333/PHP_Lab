@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 //-------- 1 Task --------
 $text1 = 'Hello';
@@ -65,7 +65,7 @@ $subStr2 = substr($str, strlen($str) / 2);
 $subStr1Count = 0;
 $subStr2Count = 0;
 
-for ($i = 0; $i < strlen($str / 2); $i++) {
+for ($i = 0; $i < strlen($str) / 2; $i++) {
     $subStr1Count += $subStr1[$i];
     $subStr2Count += $subStr2[$i];
 }
