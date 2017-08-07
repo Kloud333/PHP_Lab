@@ -3,15 +3,17 @@
 //-------- Task 1 --------
 
 function repeatArray($array) {
-    $newArray = '';
-    foreach ($array as $arrayElement) {
-        $newArray .= str_repeat((string)$arrayElement, $arrayElement);
+    $newArray = [];
+    for ($i = 0; $i < count($array); $i++) {
+        $newArray = array_merge($newArray, array_fill(0, $array[$i], $array[$i]));
+
     }
-    return str_split($newArray);
+    return $newArray;
 }
 
 print_r(repeatArray(array(1, 3, 2, 4)));
 echo '</br>';
+
 
 //-------- Task 2 --------
 
@@ -75,12 +77,9 @@ $books = [
     ]
 ];
 
-function sortBooks($books) {
-    foreach ($books as $el) {
-        $price[] = $el["price"];
-    }
-    return array_multisort($price, $books);
-}
+usort($books, function ($firstBook, $secondBook) {
+    return $firstBook["price"] > $secondBook["price"];
+});
 
 function filterBooks($books) {
     return array_filter($books, function ($book) {
@@ -88,7 +87,6 @@ function filterBooks($books) {
     });
 }
 
-sortBooks($books);
 print_r($books);
 echo '</br>';
 
@@ -96,12 +94,11 @@ print_r(filterBooks($books));
 echo '</br>';
 
 
-//-------- Task 4 --------
-
+//--------Task 4--------
 
 function equalPartsOfArray($mass) {
     for ($i = 0; $i < count($mass); $i++) {
-        if (array_sum(array_slice($mass, $i + 1, count($mass))) == array_sum(array_slice($mass, 0, $i))) {
+        if (array_sum(array_slice($mass, $i + 1)) == array_sum(array_slice($mass, 0, $i))) {
             return $i;
         }
     }
@@ -113,19 +110,15 @@ echo equalPartsOfArray([1, 100, 50, -51, 1, 1]) . '</br>';
 echo equalPartsOfArray([20, 10, -80, 10, 10, 15, 35]) . '</br>';
 echo equalPartsOfArray([10, -80, 10, 10, 15, 35, 20]) . '</br>';
 
-
 echo '</br>';
 
 //-------- Task 5 --------
 
-$array1 = [1, 1, 1, 2, 1, 1];
-$array2 = [0, 0, 0.55, 0, 0];
-$array3 = [3, 1, 5, 3, 7, 4, 1, 5, 7];
-
 function massUnique($array) {
-    return array_search(1, array_count_values(explode(' ', implode(' ', $array))));
+    return array_search(1, array_count_values(array_map('strval', $array)));
 }
 
-echo massUnique($array1) . '</br>';
-echo massUnique($array2) . '</br>';
-echo massUnique($array3) . '</br>';
+echo massUnique([1, 1, 1, 2, 1, 1]) . '</br>';
+echo massUnique([0, 0, 0.55, 0, 0]) . '</br>';
+echo massUnique([3, 1, 5, 3, 7, 4, 1, 5, 7]) . '</br>';
+
