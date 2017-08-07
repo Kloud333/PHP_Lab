@@ -6,14 +6,12 @@ function repeatArray($array) {
     $newArray = [];
     for ($i = 0; $i < count($array); $i++) {
         $newArray = array_merge($newArray, array_fill(0, $array[$i], $array[$i]));
-
     }
     return $newArray;
 }
 
 print_r(repeatArray(array(1, 3, 2, 4)));
 echo '</br>';
-
 
 //-------- Task 2 --------
 
@@ -78,7 +76,8 @@ $books = [
 ];
 
 usort($books, function ($firstBook, $secondBook) {
-    return $firstBook["price"] > $secondBook["price"];
+    if ($firstBook == $secondBook) return 0;
+    return ($firstBook["price"] < $secondBook["price"]) ? -1 : 1;
 });
 
 function filterBooks($books) {
@@ -92,7 +91,6 @@ echo '</br>';
 
 print_r(filterBooks($books));
 echo '</br>';
-
 
 //--------Task 4--------
 
@@ -121,4 +119,3 @@ function massUnique($array) {
 echo massUnique([1, 1, 1, 2, 1, 1]) . '</br>';
 echo massUnique([0, 0, 0.55, 0, 0]) . '</br>';
 echo massUnique([3, 1, 5, 3, 7, 4, 1, 5, 7]) . '</br>';
-
