@@ -20,7 +20,6 @@ echo count($match[0]) . '</br>';
 
 //-------- Task 3 --------
 function sortPart($array, $index, $length = null) {
-    if (!$length) $length = null;
     $partArray = array_slice($array, $index, $length);
     sort($partArray);
     array_splice($array, $index, count($partArray), $partArray);
